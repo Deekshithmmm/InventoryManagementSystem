@@ -66,21 +66,38 @@ public class ConnectionFactory {
     }
 
     //Login verification method
-    public boolean checkLogin(String username, String password, String userType){
+    public Boolean checkLogin(String username, String password, String userType){
+
         String query = "SELECT * FROM users WHERE username='"
+
                 + username
+
                 + "' AND password='"
+
                 + password
+
                 + "' AND usertype='"
+
                 + userType
+
                 + "' LIMIT 1";
 
+
+
         try {
+
             resultSet = statement.executeQuery(query);
+
             if(resultSet.next()) return true;
+
         } catch (Exception ex) {
+
             ex.printStackTrace();
+
         }
+
         return false;
+
     }
+
 }
