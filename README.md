@@ -9,7 +9,7 @@ This application can be used by any small to mid-sized stores to easily maintain
 - Customers 
 - Suppliers
 - Users 
-- Transactions
+- Transactionss
 
 
 ## Features of the Application
