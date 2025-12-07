@@ -164,15 +164,15 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(prodButton)
-                                        .addComponent(stockButton)
-                                        .addComponent(custButton)
-                                        .addComponent(suppButton)
-                                        .addComponent(salesButton)
-                                        .addComponent(purchaseButton)
-                                        .addComponent(usersButton)
-                                        .addComponent(logsButton)
-                                        .addComponent(aiButton))   // <-- AI BUTTON ADDED HERE
+                                        .addComponent(prodButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(stockButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(custButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(suppButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(salesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(purchaseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(usersButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(logsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(aiButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))   // <-- AI BUTTON ADDED HERE
                                 .addContainerGap())
         );
 

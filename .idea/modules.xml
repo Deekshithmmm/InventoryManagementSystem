@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InventoryManagement.iml" filepath="$PROJECT_DIR$/InventoryManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven/InventoryManagementSystem.iml" filepath="$PROJECT_DIR$/maven/InventoryManagementSystem.iml" />
     </modules>
   </component>
 </project>

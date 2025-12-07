@@ -11,11 +11,7 @@ import com.inventory.DTO.UserDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author asjad
- */
-// Welcome page for the application
+
 public class HomePage extends javax.swing.JPanel {
 
     /**
