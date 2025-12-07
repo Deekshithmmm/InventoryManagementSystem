@@ -1,24 +1,26 @@
 package main.java.com.inventory.ai.adapter;
 
 import main.java.com.inventory.ai.model.SalesRecord;
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface DataAdapter {
-    List<String> listAllProductIds();
 
-    Optional<String> getProductName(String productId);
+    double getBasePrice(int productId);
 
-    Optional<Integer> getCurrentStock(String productId);
+    int getCurrentStock(String productId);
 
-    List<SalesRecord> getSalesHistory(String productId, LocalDate since);
+    int getExpectedStock(String productId);
 
-    Optional<Double> getPurchaseCost(String productId);
+    int getFreshness(String productName);
 
-    Optional<Double> getSellingPrice(String productId);
+    int getExpiryDays(String productName);
 
-    Optional<LocalDate> getExpiryDate(String productId);
+    int getDemandLevel(int productId);
+
+    List<SalesRecord> getSalesHistory(String productId, LocalDate sinceDate);
+
+    int extractProductId(String message);
+
+    String extractProductName(String message);
 }
-

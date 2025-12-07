@@ -1,7 +1,6 @@
-package main.java.com.inventory.ai;
+package main.java.com.inventory.ai.model;
 
 import main.java.com.inventory.ai.adapter.DataAdapter;
-import main.java.com.inventory.ai.model.SalesRecord;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -32,14 +31,16 @@ public class PredictionService {
     }
 
     public Optional<Double> predictDaysLeft(String productId, int daysBack) {
-        Optional<Integer> stock = dataAdapter.getCurrentStock(productId);
-        if (stock.isEmpty()) return Optional.empty();
+        int stock = dataAdapter.getCurrentStock(productId);
+        if (stock <= 0) return Optional.empty();
+
 
         OptionalDouble avg = computeAvgDailyUsage(productId, daysBack);
         if (avg.isEmpty() || avg.getAsDouble() <= 0)
             return Optional.empty();
 
-        double daysLeft = stock.get() / avg.getAsDouble();
+        double daysLeft = stock / avg.getAsDouble();
+
         return Optional.of(daysLeft);
     }
 }

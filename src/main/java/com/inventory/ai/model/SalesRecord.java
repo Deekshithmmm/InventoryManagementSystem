@@ -4,14 +4,18 @@ import java.time.LocalDate;
 
 public class SalesRecord {
 
-    private LocalDate date;
-    private int quantity;
-    private double revenue;
+    private final String productId;
+    private final LocalDate date;
+    private final int quantity;
 
-    public SalesRecord(LocalDate date, int quantity, double revenue) {
+    public SalesRecord(String productId, LocalDate date, int quantity) {
+        this.productId = productId;
         this.date = date;
         this.quantity = quantity;
-        this.revenue = revenue;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 
     public LocalDate getDate() {
@@ -20,9 +24,5 @@ public class SalesRecord {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public double getRevenue() {
-        return revenue;
     }
 }
