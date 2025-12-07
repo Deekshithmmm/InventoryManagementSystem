@@ -18,9 +18,9 @@ public class MyDataAdapter implements DataAdapter {
         data.put("expiryDays", 40);
         data.put("demand", 70);
 
-        salesHistory.add(new SalesRecord("101", LocalDate.now().minusDays(1), 20));
-        salesHistory.add(new SalesRecord("101", LocalDate.now().minusDays(2), 18));
-        salesHistory.add(new SalesRecord("101", LocalDate.now().minusDays(3), 22));
+        salesHistory.add(new SalesRecord("101", LocalDate.now().minusDays(1), 20,200));
+        salesHistory.add(new SalesRecord("101", LocalDate.now().minusDays(2), 18,180));
+        salesHistory.add(new SalesRecord("101", LocalDate.now().minusDays(3), 22,300));
     }
 
     @Override
