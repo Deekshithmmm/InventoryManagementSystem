@@ -2,6 +2,7 @@ package com.inventory.UI;
 import main.java.com.inventory.ai.ui.AiInsightsPage;
 import com.inventory.DAO.UserDAO;
 import com.inventory.DTO.UserDTO;
+import main.java.com.inventory.ai.ui.UITheme;
 
 import javax.swing.*;
 import java.awt.*;
@@ -253,6 +254,39 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         getContentPane().add(mainPanel);
+        // === APPLY COLOR THEME ===================================
+        mainPanel.setBackground(UITheme.BG_LIGHT);
+        displayPanel.setBackground(UITheme.BG_LIGHT);
+
+        menuPanel.setBackground(UITheme.SIDEBAR_BG);
+        navPanel.setBackground(UITheme.SIDEBAR_BG);
+        userPanel.setBackground(UITheme.PANEL_LIGHT);
+
+// Menu Button
+        UITheme.styleButton(menuButton);
+
+// Sidebar buttons
+        UITheme.styleSidebarButton(homeButton, false);
+        UITheme.styleSidebarButton(prodButton, false);
+        UITheme.styleSidebarButton(stockButton, false);
+        UITheme.styleSidebarButton(custButton, false);
+        UITheme.styleSidebarButton(suppButton, false);
+        UITheme.styleSidebarButton(salesButton, false);
+        UITheme.styleSidebarButton(purchaseButton, false);
+        UITheme.styleSidebarButton(usersButton, false);
+        UITheme.styleSidebarButton(logsButton, false);
+        UITheme.styleSidebarButton(aiButton, false);
+
+// Header
+        nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        nameLabel.setForeground(UITheme.TEXT_DARK);
+
+// Logout button
+        UITheme.styleButton(logoutButton);
+        logoutButton.setBackground(UITheme.DANGER);
+
+// =========================================================
+
         pack();
     }
 
