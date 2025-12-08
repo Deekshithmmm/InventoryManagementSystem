@@ -1,8 +1,10 @@
 package com.inventory.UI;
+
 import main.java.com.inventory.ai.ui.AiInsightsPage;
 import com.inventory.DAO.UserDAO;
 import com.inventory.DTO.UserDTO;
 import main.java.com.inventory.ai.ui.UITheme;
+import main.java.com.inventory.ai.ui.ShelfScannerPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +20,9 @@ public class Dashboard extends javax.swing.JFrame {
     UserDTO userDTO;
     LocalDateTime outTime;
 
-    // Add AI Button Reference
+    // Buttons
     private javax.swing.JButton aiButton;
+    private javax.swing.JButton shelfScanButton;   // NEW BUTTON
 
     public Dashboard(String username, String userType, UserDTO userDTO) {
         initComponents();
@@ -30,7 +33,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         displayPanel.setLayout(layout = new CardLayout());
 
-        // Register all pages
+        // Register pages
         displayPanel.add("Home", new HomePage(username));
         displayPanel.add("Users", new UsersPage());
         displayPanel.add("Customers", new CustomerPage());
@@ -40,7 +43,8 @@ public class Dashboard extends javax.swing.JFrame {
         displayPanel.add("Sales", new SalesPage(username, this));
         displayPanel.add("Purchase", new PurchasePage(this));
         displayPanel.add("Logs", new UserLogsPage());
-        displayPanel.add("AI", new AiInsightsPage());   // <-- NEW AI PAGE
+        displayPanel.add("AI", new AiInsightsPage());
+        displayPanel.add("ShelfScan", new ShelfScannerPage());  // NEW PAGE
 
         if ("EMPLOYEE".equalsIgnoreCase(userType)) {
             notForEmployee();
@@ -48,7 +52,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         currentUserSession();
 
-        // Save log on close
+        // Save logs on close
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -64,7 +68,7 @@ public class Dashboard extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    // ---------------- PAGE SWITCHERS -------------------
+    // Page Swappers
     public void addHomePage() { layout.show(displayPanel, "Home"); }
     public void addUsersPage() { layout.show(displayPanel, "Users"); }
     public void addCustPage() { layout.show(displayPanel, "Customers"); }
@@ -74,11 +78,8 @@ public class Dashboard extends javax.swing.JFrame {
     public void addSalesPage() { layout.show(displayPanel, "Sales"); }
     public void addPurchasePage() { layout.show(displayPanel, "Purchase"); }
     public void addLogsPage() { layout.show(displayPanel, "Logs"); }
-
-    // NEW — Show AI Panel
     public void addAiPage() { layout.show(displayPanel, "AI"); }
 
-    // -----------------------------------------------
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
@@ -97,8 +98,8 @@ public class Dashboard extends javax.swing.JFrame {
         purchaseButton = new javax.swing.JButton();
         logsButton = new javax.swing.JButton();
 
-        // NEW AI BUTTON
         aiButton = new javax.swing.JButton();
+        shelfScanButton = new javax.swing.JButton();   // NEW
 
         displayPanel = new javax.swing.JPanel();
         userPanel = new javax.swing.JPanel();
@@ -108,7 +109,7 @@ public class Dashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 100, 0, 0));
 
-        // ------------ MENU BUTTON ------------
+        // MENU BUTTON
         menuButton.setText("MENU");
         menuButton.addActionListener(evt -> menuButtonActionPerformed(evt));
 
@@ -123,7 +124,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        // ----------------- NAV BUTTONS -------------------
+        // NAV BUTTONS
         homeButton.setText("Home");
         homeButton.addActionListener(evt -> addHomePage());
 
@@ -151,12 +152,15 @@ public class Dashboard extends javax.swing.JFrame {
         logsButton.setText("User Logs");
         logsButton.addActionListener(evt -> addLogsPage());
 
-        // ------------------ NEW AI BUTTON -------------------
+        // AI BUTTON
         aiButton.setText("AI Insights");
-        aiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aiButton.addActionListener(evt -> addAiPage());
 
-        // ------------------ NAV PANEL LAYOUT -------------------
+        // NEW SHELF SCANNER BUTTON
+        shelfScanButton.setText("Shelf Scanner");
+        shelfScanButton.addActionListener(evt -> layout.show(displayPanel, "ShelfScan"));
+
+        // NAV PANEL LAYOUT
         javax.swing.GroupLayout navPanelLayout = new javax.swing.GroupLayout(navPanel);
         navPanel.setLayout(navPanelLayout);
         navPanelLayout.setHorizontalGroup(
@@ -164,16 +168,17 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGroup(navPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(prodButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(stockButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(custButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(suppButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(salesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(purchaseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(usersButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(logsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                        .addComponent(aiButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))   // <-- AI BUTTON ADDED HERE
+                                        .addComponent(homeButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(prodButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(stockButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(custButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(suppButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(salesButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(purchaseButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(usersButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(logsButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(aiButton, 107, 107, Short.MAX_VALUE)
+                                        .addComponent(shelfScanButton, 107, 107, Short.MAX_VALUE))  // NEW BUTTON
                                 .addContainerGap())
         );
 
@@ -199,11 +204,13 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addGap(10)
                                 .addComponent(logsButton, 35, 35, 35)
                                 .addGap(10)
-                                .addComponent(aiButton, 35, 35, 35)  // <-- AI BUTTON POSITION
+                                .addComponent(aiButton, 35, 35, 35)
+                                .addGap(10)
+                                .addComponent(shelfScanButton, 35, 35, 35)  // NEW BUTTON POSITION
                                 .addContainerGap())
         );
 
-        // ----------------- USER PANEL -------------------
+        // USER PANEL
         nameLabel.setText("User:");
         logoutButton.setText("Sign out");
         logoutButton.addActionListener(evt -> logoutButtonActionPerformed(evt));
@@ -226,7 +233,7 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addComponent(logoutButton, 35, 35, 35))
         );
 
-        // -------------- MAIN LAYOUT --------------------
+        // MAIN LAYOUT
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -254,7 +261,8 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         getContentPane().add(mainPanel);
-        // === APPLY COLOR THEME ===================================
+
+        // APPLY THEME
         mainPanel.setBackground(UITheme.BG_LIGHT);
         displayPanel.setBackground(UITheme.BG_LIGHT);
 
@@ -262,10 +270,9 @@ public class Dashboard extends javax.swing.JFrame {
         navPanel.setBackground(UITheme.SIDEBAR_BG);
         userPanel.setBackground(UITheme.PANEL_LIGHT);
 
-// Menu Button
         UITheme.styleButton(menuButton);
 
-// Sidebar buttons
+        // Sidebar styling
         UITheme.styleSidebarButton(homeButton, false);
         UITheme.styleSidebarButton(prodButton, false);
         UITheme.styleSidebarButton(stockButton, false);
@@ -276,21 +283,17 @@ public class Dashboard extends javax.swing.JFrame {
         UITheme.styleSidebarButton(usersButton, false);
         UITheme.styleSidebarButton(logsButton, false);
         UITheme.styleSidebarButton(aiButton, false);
+        UITheme.styleSidebarButton(shelfScanButton, false);   // STYLE NEW BUTTON
 
-// Header
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
         nameLabel.setForeground(UITheme.TEXT_DARK);
 
-// Logout button
         UITheme.styleButton(logoutButton);
         logoutButton.setBackground(UITheme.DANGER);
-
-// =========================================================
 
         pack();
     }
 
-    // ------------------- LOGOUT ------------------------
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int opt = JOptionPane.showConfirmDialog(
                 null,
@@ -314,13 +317,11 @@ public class Dashboard extends javax.swing.JFrame {
         navPanel.setVisible(!navPanel.isVisible());
     }
 
-    // Hide admin-only buttons
     public void notForEmployee() {
         navPanel.remove(usersButton);
         navPanel.remove(logsButton);
     }
 
-    // Load logged user name
     public void currentUserSession() {
         UserDTO u = new UserDTO();
         new UserDAO().getFullName(u, username);

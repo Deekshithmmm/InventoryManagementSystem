@@ -18,5 +18,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="github.sarxos.webcam.capture1" level="project" />
   </component>
 </module>
